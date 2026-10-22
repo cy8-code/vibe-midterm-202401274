@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#fff8ef">
+    <title>Cafe Order | 카페 오더</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="Cafe Order 홈">
+        <span class="brand-mark" aria-hidden="true">C</span>
+        <span><strong>Cafe Order</strong><small>오늘의 커피를 주문해요</small></span>
+      </a>
+      <nav class="top-nav" aria-label="화면 선택">
+        <button class="nav-tab is-active" type="button" data-view="order">주문하기</button>
+        <button class="nav-tab" type="button" data-view="admin">관리자</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="view is-active" id="order-view" aria-labelledby="welcome-title">
+        <div class="welcome">
+          <div>
+            <p class="eyebrow">FRESHLY BREWED FOR YOU</p>
+            <h1 id="welcome-title">오늘은 어떤 커피가 좋으세요?</h1>
+            <p class="welcome-copy">마음에 드는 메뉴를 골라 편하게 주문해 보세요.</p>
+          </div>
+          <div class="welcome-stamp" aria-hidden="true"><span>COFFEE</span><strong>TIME</strong></div>
+        </div>
+
+        <div class="shop-layout">
+          <div class="shop-main">
+            <section aria-labelledby="menu-title">
+              <div class="section-heading">
+                <div><p class="eyebrow">OUR MENU</p><h2 id="menu-title">커피 메뉴</h2></div>
+                <span class="section-note">매일 신선하게 준비해요</span>
+              </div>
+              <div class="menu-grid" id="menu-list"></div>
+            </section>
+
+            <section class="orders-section" aria-labelledby="my-orders-title">
+              <div class="section-heading">
+                <div><p class="eyebrow">ORDER STATUS</p><h2 id="my-orders-title">내 주문</h2></div>
+              </div>
+              <div class="orders-list" id="my-orders"></div>
+            </section>
+          </div>
+
+          <aside class="cart-panel" id="cart-panel" aria-labelledby="cart-title">
+            <div class="cart-heading">
+              <div><p class="eyebrow">YOUR SELECTION</p><h2 id="cart-title">장바구니 <span class="cart-count" id="cart-count">0</span></h2></div>
+              <button class="text-button" id="clear-cart" type="button">비우기</button>
+            </div>
+            <div class="cart-items" id="cart-items"></div>
+            <div class="cart-footer">
+              <div class="total-row"><span>총 주문 금액</span><strong id="cart-total">0원</strong></div>
+              <button class="button button-primary checkout-button" id="checkout" type="button">주문하기</button>
+              <p class="cart-hint">주문 후에는 직원이 음료를 준비해 드려요.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view admin-view" id="admin-view" aria-labelledby="admin-title" hidden>
+        <div class="admin-intro">
+          <p class="eyebrow">CAFE DASHBOARD</p>
+          <h1 id="admin-title">관리자</h1>
+          <p>접수된 주문을 확인하고 제조 완료 상태로 변경할 수 있어요.</p>
+        </div>
+        <section class="admin-section" aria-labelledby="admin-orders-title">
+          <div class="section-heading">
+            <div><p class="eyebrow">ORDER QUEUE</p><h2 id="admin-orders-title">주문 현황</h2></div>
+          </div>
+          <div class="admin-orders" id="admin-orders"></div>
+        </section>
+        <section class="admin-section" aria-labelledby="stock-title">
+          <div class="section-heading">
+            <div><p class="eyebrow">INVENTORY</p><h2 id="stock-title">메뉴별 재고</h2></div>
+            <span class="section-note">재고 현황 조회</span>
+          </div>
+          <div class="stock-grid" id="stock-list"></div>
+        </section>
+      </section>
+    </main>
+
+    <div class="mobile-cart-bar" id="mobile-cart-bar">
+      <button class="mobile-cart-toggle" id="mobile-cart-toggle" type="button" aria-expanded="false" aria-controls="cart-panel">
+        <span class="mobile-cart-label"><span class="cart-count" id="mobile-cart-count">0</span> 장바구니 보기</span>
+        <strong id="mobile-cart-total">0원</strong>
+      </button>
+    </div>
+
+    <dialog class="order-dialog" id="order-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-content">
+        <div class="dialog-mark" aria-hidden="true">C</div>
+        <p class="eyebrow">ORDER COMPLETE</p>
+        <h2 id="dialog-title">주문이 접수됐어요!</h2>
+        <p>잠시만 기다려 주세요.<br>따뜻하게 준비해 드릴게요.</p>
+        <div class="dialog-order-number">주문 번호 <strong id="dialog-order-id"></strong></div>
+        <button class="button button-primary" id="close-dialog" type="button">확인</button>
+      </div>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
